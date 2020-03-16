@@ -10,7 +10,15 @@ export class Tab1Page {
   constructor() {}
 
   eventoclick(){
-    alert('evento click')
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+      var digimon =  JSON.parse(this.responseText)
+        alert(digimon[0].name);
+      }
+    });
+    xhr.open("GET", "https://digimon-api.herokuapp.com/api/digimon/id/7");
+    xhr.send();
   }
 
 }
